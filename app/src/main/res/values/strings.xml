@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MemoEx1</string>
+
+
+    <!-- Main -->
+    <string name="main_toolbar_title">메모장 어플리케이션</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- Detail -->
+
+</resources>
