@@ -4,15 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kanghan.example.memoex1.FragmentCalendar
-import kanghan.example.memoex1.FragmentMemo
+import kanghan.example.memoex1.fragment.CalendarFragment
+import kanghan.example.memoex1.fragment.MemoFragment
 import kanghan.example.memoex1.R
-import kanghan.example.memoex1.ViewpagerAdapter
+import kanghan.example.memoex1.adapter.ViewpagerAdapter
 
 class MainActivity : AppCompatActivity() {
 
-    private val fragmentMemo by lazy { FragmentMemo.newInstance() }
-    private val fragmentCalendar by lazy { FragmentCalendar.newInstance() }
+    private val fragmentMemo by lazy { MemoFragment.newInstance() }
+    private val fragmentCalendar by lazy { CalendarFragment.newInstance() }
 
     private val viewPagerAdapter: ViewpagerAdapter by lazy {
         ViewpagerAdapter(

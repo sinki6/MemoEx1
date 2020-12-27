@@ -14,7 +14,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // Required ONLY when setting minSdkVersion to 20 or lower
+
     }
+
+
 
     buildTypes {
         release {
@@ -41,4 +45,10 @@ dependencies {
 
     // gson
     implementation 'com.google.code.gson:gson:2.8.5'
+    //coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:<latest-version>'
+
+    // Event Calendar
+    implementation 'com.github.mahimrocky:EventCalender:v1.0.0'
+
+
 }
