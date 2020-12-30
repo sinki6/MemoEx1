@@ -5,8 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".fragment.CalendarFragment">
 
-    <com.skyhope.eventcalenderlibrary.CalenderEvent
-        android:id="@+id/calender_event"
+<!--    <com.skyhope.eventcalenderlibrary.CalenderEvent-->
+<!--        android:id="@+id/calender_event"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+    <ru.cleverpumpkin.calendar.CalendarView
+        android:id="@+id/calendar_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

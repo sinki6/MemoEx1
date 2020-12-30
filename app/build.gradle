@@ -49,6 +49,8 @@ dependencies {
 
     // Event Calendar
     implementation 'com.github.mahimrocky:EventCalender:v1.0.0'
+    // Event Calendar2 (CrunchyCalendar)
+    implementation 'ru.cleverpumpkin:crunchycalendar:2.0.0'
 
 
 }
