@@ -31,7 +31,9 @@ class MemoFragment : Fragment() {
         setRVAdapter()
         setViewClickListener()
         getMemoList()
-    }
+    } // Fragment전환때마다 데이터 refresh필요
+    // 하단에 recyclerView 구현
+
 
     private fun setRVAdapter() {
         recyclerViewMemo.adapter = mainMemoRVAdapter
@@ -39,7 +41,6 @@ class MemoFragment : Fragment() {
             MainMemoRVAdapter.ItemClickListener {
             //메모 객체 클릭
             override fun onClick(position: Int, memoData: MemoData) {
-
                 val editIntent = startIntent(activity!!, true, position)
                 startActivityForResult(editIntent, 101)
             }

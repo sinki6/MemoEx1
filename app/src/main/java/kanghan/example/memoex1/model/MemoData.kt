@@ -5,6 +5,6 @@ import java.io.Serializable
 data class MemoData(
     var memoTitle: String,
     var memoContent: String,
-    val savedTimeInMills: Long,
+    val savedTime: Long,
     val color: Int
 ) : Serializable

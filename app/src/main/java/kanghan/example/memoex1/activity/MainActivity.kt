@@ -8,6 +8,7 @@ import kanghan.example.memoex1.fragment.CalendarFragment
 import kanghan.example.memoex1.fragment.MemoFragment
 import kanghan.example.memoex1.R
 import kanghan.example.memoex1.adapter.ViewpagerAdapter
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +33,8 @@ class MainActivity : AppCompatActivity() {
 
         initBottomNavigationView()
         initViewPager()
+
+
     }
 
     private fun initViewPager() {
