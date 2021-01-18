@@ -57,7 +57,7 @@
         android:src="@drawable/btn_memo_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:onClick="@{}"
+        android:onClick="@{()->fragment.addBtn()}"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,14 +31,15 @@ class MemoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.setContentView(activity!!,R.layout.fragment_memo)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_memo,container,false)
+        binding.fragment = this
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setRVAdapter()
-        setViewClickListener()
+
         getMemoList()
     }
 
@@ -54,11 +55,9 @@ class MemoFragment : Fragment() {
         binding.rvMemo.adapter = mainMemoRVAdapter
     }
 
-    private fun setViewClickListener() {
-        fab_memo_add.setOnClickListener {
-            val addIntent = startIntent(activity!!, false, 0)
-            startActivityForResult(addIntent, 101)
-        }
+    fun addBtn(){
+        val addIntent = startIntent(activity!!, false,0)
+        startActivityForResult(addIntent, 101)
     }
 
     private fun getMemoList() {

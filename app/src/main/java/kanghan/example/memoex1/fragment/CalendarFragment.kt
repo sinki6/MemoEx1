@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import kanghan.example.memoex1.R
 import kanghan.example.memoex1.adapter.MainMemoRVAdapter
+import kanghan.example.memoex1.databinding.FragmentCalendarBinding
 import kanghan.example.memoex1.model.MemoData
 import kanghan.example.memoex1.utils.MySharedPreferences
 import kotlinx.android.synthetic.main.fragment_calendar.*
@@ -15,7 +17,7 @@ import ru.cleverpumpkin.calendar.CalendarView
 import java.util.*
 
 class CalendarFragment : Fragment() {
-
+    private lateinit var binding:FragmentCalendarBinding
     private val calendarMemoRVAdapter by lazy {
         MainMemoRVAdapter { position: Int, memoData: MemoData ->
             // TODO 클릭 했을 때 화면 전환
@@ -28,7 +30,9 @@ class CalendarFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_calendar, container, false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_calendar,container,false)
+        binding.fragment = this
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
