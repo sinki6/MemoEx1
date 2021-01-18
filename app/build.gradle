@@ -17,6 +17,9 @@ android {
         // Required ONLY when setting minSdkVersion to 20 or lower
 
     }
+    buildFeatures {
+        dataBinding true
+    }
 
 
 

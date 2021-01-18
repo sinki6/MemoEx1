@@ -76,6 +76,4 @@ class EditActivity : AppCompatActivity() { //저장, 삭제, 데이터수정 시
 
         }
     }
-
-
 }

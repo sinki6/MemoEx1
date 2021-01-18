@@ -1,6 +1,5 @@
 package kanghan.example.memoex1.fragment
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,13 +12,17 @@ import kanghan.example.memoex1.utils.MySharedPreferences
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import ru.cleverpumpkin.calendar.CalendarDate
 import ru.cleverpumpkin.calendar.CalendarView
-import java.text.SimpleDateFormat
 import java.util.*
 
 class CalendarFragment : Fragment() {
+
     private val calendarMemoRVAdapter by lazy {
-        MainMemoRVAdapter()
+        MainMemoRVAdapter { position: Int, memoData: MemoData ->
+            // TODO 클릭 했을 때 화면 전환
+        }
     }
+
+    private lateinit var calendarView: CalendarView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,25 +33,28 @@ class CalendarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val calendarView = calendar_view
-        setUpCalendar(calendarView)
-        getMemoData(calendarView)
+        calendarView = calendar_view
+        setUpCalendar(calendarView) // 달력 설정값 기준 호출
 
+
+        //달력 날짜 클릭 시, 하기 창에 메모 내용 호출
         calendarView.onDateClickListener = { date ->
             val items = MySharedPreferences.LoadData(context!!)
             val itemsExtraction = mutableListOf<MemoData>()
             items.forEach {
-                if (CalendarDate(it.savedTime) == date ) {
+                if (CalendarDate(it.savedTime) == date) {
                     itemsExtraction.add(it)
                 }
             }
             recyclerViewMemoCalendar.adapter = calendarMemoRVAdapter
             calendarMemoRVAdapter.setItems(itemsExtraction)
-
-
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        getMemoData(calendarView) // 달력 메모 기준dot표시 -> refresh필요
+    }
 
     private fun setUpCalendar(calendarView: CalendarView) {
         val calendar = Calendar.getInstance()
@@ -56,7 +62,7 @@ class CalendarFragment : Fragment() {
         //calendar.set(2018, Calendar.JUNE, 1)
         val initialDate = CalendarDate(calendar.time)
         //Minimum available date
-        calendar.set(2018,Calendar.JANUARY,1)
+        calendar.set(2018, Calendar.JANUARY, 1)
         val minDate = CalendarDate(calendar.time)
         //Maximum availabe date
         calendar.set(2040, Calendar.DECEMBER, 31)
@@ -65,15 +71,14 @@ class CalendarFragment : Fragment() {
         //val preselectedDates: List<CalendarDate> =getPreselectedDates()
         val firstDayOfWeek = java.util.Calendar.SUNDAY
         calendarView.setupCalendar(
-                initialDate = initialDate,
-                minDate = minDate,
-                maxDate = maxDate,
-                selectionMode = CalendarView.SelectionMode.NONE,
-                selectedDates = emptyList(),
-                firstDayOfWeek = firstDayOfWeek,
-                showYearSelectionView = true
+            initialDate = initialDate,
+            minDate = minDate,
+            maxDate = maxDate,
+            selectionMode = CalendarView.SelectionMode.NONE,
+            selectedDates = emptyList(),
+            firstDayOfWeek = firstDayOfWeek,
+            showYearSelectionView = true
         )
-        calendarView.datesIndicators
     }
 
     private fun getMemoData(calendarView: CalendarView) {
@@ -86,9 +91,8 @@ class CalendarFragment : Fragment() {
         calendarView.datesIndicators = listIndicatorMemo
     }
 
-    inner class DateIndicatorMemo(date: CalendarDate, color: Int) : CalendarView.DateIndicator{ // CalendarView.DateIndicator인터페이스를 상속한 class정의
-        override val date: CalendarDate =date
-        override val color: Int = color
+    inner class DateIndicatorMemo(override val date: CalendarDate, override val color: Int) :
+        CalendarView.DateIndicator { // CalendarView.DateIndicator인터페이스를 상속한 class정의
     }
 
     companion object {

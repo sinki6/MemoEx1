@@ -9,10 +9,10 @@ import kanghan.example.memoex1.R
 import kanghan.example.memoex1.model.MemoData
 import kotlinx.android.synthetic.main.item_recycler_view.view.*
 
-class MainMemoRVAdapter : RecyclerView.Adapter<MainMemoRVAdapter.MyViewHolder>() {
+class MainMemoRVAdapter(private val onItemClick: (Int, MemoData) -> Unit) :
+    RecyclerView.Adapter<MainMemoRVAdapter.MyViewHolder>() {
 
     private val items: MutableList<MemoData> = mutableListOf()
-    private var itemClickListener: ItemClickListener? = null
 
     fun setItems(items: List<MemoData>) {
         this.items.clear()
@@ -25,7 +25,7 @@ class MainMemoRVAdapter : RecyclerView.Adapter<MainMemoRVAdapter.MyViewHolder>()
             LayoutInflater.from(parent.context).inflate(R.layout.item_recycler_view, parent, false)
         return MyViewHolder(view).apply {
             this.itemView.setOnClickListener {
-                itemClickListener?.onClick(adapterPosition, items[adapterPosition])
+                onItemClick.invoke(adapterPosition, items[adapterPosition])
             }
         }
     }
@@ -40,17 +40,9 @@ class MainMemoRVAdapter : RecyclerView.Adapter<MainMemoRVAdapter.MyViewHolder>()
             }
         }
     }
-
-    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+// inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class MyViewHolder(view: View ) : RecyclerView.ViewHolder(view) {
         val memoTitle: TextView = itemView.memoTitle
         val memoContent: TextView = itemView.memoContent
-    }
-
-    interface ItemClickListener {
-        fun onClick(position: Int, memoData: MemoData)
-    }
-
-    fun setItemClickListener(itemClickListener: ItemClickListener) {
-        this.itemClickListener = itemClickListener
     }
 }

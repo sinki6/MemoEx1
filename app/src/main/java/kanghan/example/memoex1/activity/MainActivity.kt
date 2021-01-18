@@ -2,6 +2,7 @@ package kanghan.example.memoex1.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kanghan.example.memoex1.fragment.CalendarFragment
@@ -14,7 +15,6 @@ class MainActivity : AppCompatActivity() {
 
     private val fragmentMemo by lazy { MemoFragment.newInstance() }
     private val fragmentCalendar by lazy { CalendarFragment.newInstance() }
-
     private val viewPagerAdapter: ViewpagerAdapter by lazy {
         ViewpagerAdapter(
             this,
@@ -27,13 +27,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //val binding: MainActivity = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        //binding.bottomBar
+        //binding.viewPager2
         setContentView(R.layout.activity_main)
         bottomBar = findViewById(R.id.bottom_bar)
         viewPager2 = findViewById(R.id.view_Pager)
 
         initBottomNavigationView()
         initViewPager()
-
 
     }
 

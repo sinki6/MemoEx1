@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="memo"
+            type="kanghan.example.memoex1.model.MemoData" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/layout_bg_2">
@@ -19,7 +27,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Title" />
+        tools:text="Title"
+        android:text="@{memo.memoTitle}"/>
 
     <TextView
         android:id="@+id/memoContent"
@@ -34,5 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/memoTitle"
         app:layout_constraintTop_toBottomOf="@id/memoTitle"
-        tools:text="Content" />
+        tools:text="Content"
+        android:text="@{memo.memoContent}"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
