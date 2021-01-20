@@ -40,7 +40,7 @@ class MainMemoRVAdapter(private val onItemClick: (Int, MemoData) -> Unit) :
             }
         }
     }
-// inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
     inner class MyViewHolder(view: View ) : RecyclerView.ViewHolder(view) {
         val memoTitle: TextView = itemView.memoTitle
         val memoContent: TextView = itemView.memoContent

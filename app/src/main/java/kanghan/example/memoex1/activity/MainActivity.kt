@@ -9,6 +9,7 @@ import kanghan.example.memoex1.fragment.CalendarFragment
 import kanghan.example.memoex1.fragment.MemoFragment
 import kanghan.example.memoex1.R
 import kanghan.example.memoex1.adapter.ViewpagerAdapter
+import kanghan.example.memoex1.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -24,20 +25,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomBar: BottomNavigationView
     private lateinit var viewPager2: ViewPager2
-
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //val binding: MainActivity = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        //binding.bottomBar
-        //binding.viewPager2
-        setContentView(R.layout.activity_main)
-        bottomBar = findViewById(R.id.bottom_bar)
-        viewPager2 = findViewById(R.id.view_Pager)
-
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        bottomBar= binding.bottomBar
+        viewPager2 = binding.viewPager
         initBottomNavigationView()
         initViewPager()
-
     }
 
     private fun initViewPager() {

@@ -3,9 +3,11 @@ package kanghan.example.memoex1.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.databinding.DataBindingUtil
 import kanghan.example.memoex1.utils.MySharedPreferences
 import kanghan.example.memoex1.utils.MySharedPreferences.SaveData
 import kanghan.example.memoex1.R
+import kanghan.example.memoex1.databinding.ActivityEditBinding
 import kanghan.example.memoex1.model.DayOfWeek
 import kanghan.example.memoex1.model.MemoData
 import kanghan.example.memoex1.utils.toEditable
@@ -21,14 +23,15 @@ class EditActivity : AppCompatActivity() { //저장, 삭제, 데이터수정 시
     private val dataIdx by lazy {
         intent.getIntExtra("dataIdx", 0)
     }
+    private lateinit var binding: ActivityEditBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_edit)
+
         if (editable) {
             val memoData = MySharedPreferences.LoadData(this)[dataIdx]
-            editTextMemoTitle.text = memoData.memoTitle.toEditable()
-            editTextMemoContent.text = memoData.memoContent.toEditable()
+            binding.memoData = memoData
         } else {
             iv_delete.visibility = View.INVISIBLE
         }
@@ -42,8 +45,8 @@ class EditActivity : AppCompatActivity() { //저장, 삭제, 데이터수정 시
                     MySharedPreferences.LoadData(this)
 
                 memoDataList[dataIdx].apply {
-                    memoTitle = editTextMemoTitle.text.toString()
-                    memoContent = editTextMemoContent.text.toString()
+                    memoTitle = binding.editTextMemoTitle.text.toString()
+                    memoContent = binding.editTextMemoContent.text.toString()
                 }
                 SaveData(this, memoDataList)
                 setResult(91)
@@ -51,8 +54,8 @@ class EditActivity : AppCompatActivity() { //저장, 삭제, 데이터수정 시
             } else { // 데이터  추가
                 val memoDataToAppend =
                     MemoData(
-                        editTextMemoTitle.text.toString(),
-                        editTextMemoContent.text.toString(),
+                        binding.editTextMemoTitle.text.toString(),
+                        binding.editTextMemoContent.text.toString(),
                         Calendar.getInstance().timeInMillis,
                         DayOfWeek.values()[Calendar.getInstance()
                             .get(Calendar.DAY_OF_WEEK) - 1].color
@@ -65,15 +68,13 @@ class EditActivity : AppCompatActivity() { //저장, 삭제, 데이터수정 시
                 finish()
             }
         }
-        iv_delete.setOnClickListener {
-            //삭제할 데이터 번호
-            val memoDataList =
-                MySharedPreferences.LoadData(this)
-            memoDataList.removeAt(dataIdx)
-            SaveData(this, memoDataList)
-            setResult(92)
-            finish()
-
-        }
+    }
+    fun deleteMemo() {
+        val memoDataList =
+            MySharedPreferences.LoadData(this)
+        memoDataList.removeAt(dataIdx)
+        SaveData(this, memoDataList)
+        setResult(92)
+        finish()
     }
 }
