@@ -36,6 +36,8 @@ class EditActivity : AppCompatActivity() { //저장, 삭제, 데이터수정 시
             iv_delete.visibility = View.INVISIBLE
         }
         setViewClickListener()
+
+        binding.ivBack.setImageResource(R.drawable.ic_action_back)
     }
 
     private fun setViewClickListener() {
@@ -75,6 +77,9 @@ class EditActivity : AppCompatActivity() { //저장, 삭제, 데이터수정 시
         memoDataList.removeAt(dataIdx)
         SaveData(this, memoDataList)
         setResult(92)
+        finish()
+    }
+    fun backActivity(){
         finish()
     }
 }
