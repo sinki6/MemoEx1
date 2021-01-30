@@ -28,6 +28,7 @@ class EditActivity : AppCompatActivity() { //저장, 삭제, 데이터수정 시
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_edit)
+        binding.editActivity = this
 
         if (editable) {
             val memoData = MySharedPreferences.LoadData(this)[dataIdx]
@@ -37,7 +38,6 @@ class EditActivity : AppCompatActivity() { //저장, 삭제, 데이터수정 시
         }
         setViewClickListener()
 
-        binding.ivBack.setImageResource(R.drawable.ic_action_back)
     }
 
     private fun setViewClickListener() {
@@ -45,19 +45,17 @@ class EditActivity : AppCompatActivity() { //저장, 삭제, 데이터수정 시
             if (editable) { // 데이터 수정
                 val memoDataList =
                     MySharedPreferences.LoadData(this)
-
                 memoDataList[dataIdx].apply {
-                    memoTitle = binding.editTextMemoTitle.text.toString()
-                    memoContent = binding.editTextMemoContent.text.toString()
+                    memoTitle = binding.memoData!!.memoTitle
+                    memoContent = binding.memoData!!.memoContent
                 }
                 SaveData(this, memoDataList)
                 setResult(91)
                 finish()
             } else { // 데이터  추가
                 val memoDataToAppend =
-                    MemoData(
-                        binding.editTextMemoTitle.text.toString(),
-                        binding.editTextMemoContent.text.toString(),
+                    MemoData(binding.memoData!!.memoTitle,
+                        binding.memoData!!.memoContent,
                         Calendar.getInstance().timeInMillis,
                         DayOfWeek.values()[Calendar.getInstance()
                             .get(Calendar.DAY_OF_WEEK) - 1].color
@@ -80,6 +78,7 @@ class EditActivity : AppCompatActivity() { //저장, 삭제, 데이터수정 시
         finish()
     }
     fun backActivity(){
+        val i = 9
         finish()
     }
 }

@@ -12,4 +12,9 @@
         android:icon="@android:drawable/ic_dialog_info"
         android:title="두번째"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_three"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="세번째"
+        app:showAsAction="ifRoom" />
 </menu>

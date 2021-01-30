@@ -10,16 +10,18 @@ import kanghan.example.memoex1.fragment.MemoFragment
 import kanghan.example.memoex1.R
 import kanghan.example.memoex1.adapter.ViewpagerAdapter
 import kanghan.example.memoex1.databinding.ActivityMainBinding
+import kanghan.example.memoex1.fragment.FavoriteFragment
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     private val fragmentMemo by lazy { MemoFragment.newInstance() }
     private val fragmentCalendar by lazy { CalendarFragment.newInstance() }
+    private val fragmentFavorite by lazy {FavoriteFragment.newInstance()}
     private val viewPagerAdapter: ViewpagerAdapter by lazy {
         ViewpagerAdapter(
             this,
-            listOf(fragmentMemo, fragmentCalendar)
+            listOf(fragmentMemo, fragmentCalendar, fragmentFavorite)
         )
     }
 
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
                     val id = when (position) {
                         0 -> R.id.action_one
                         1 -> R.id.action_two
+                        2 -> R.id.action_three
                         else -> R.id.action_one
                     }
                     bottomBar.selectedItemId = id
@@ -57,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                 val position = when (it.itemId) {
                     R.id.action_one -> 0
                     R.id.action_two -> 1
+                    R.id.action_three -> 2
                     else -> 0
                 }
                 viewPager2.currentItem = position
