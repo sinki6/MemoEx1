@@ -5,16 +5,16 @@
         android:id="@+id/action_one"
         android:enabled="true"
         android:icon="@android:drawable/ic_dialog_info"
-        android:title="첫번째"
+        android:title="List"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_two"
         android:icon="@android:drawable/ic_dialog_info"
-        android:title="두번째"
+        android:title="Calendar"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_three"
         android:icon="@android:drawable/ic_dialog_info"
-        android:title="세번째"
+        android:title="Favorite"
         app:showAsAction="ifRoom" />
 </menu>

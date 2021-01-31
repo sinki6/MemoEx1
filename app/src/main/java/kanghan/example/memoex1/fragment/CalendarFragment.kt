@@ -40,7 +40,6 @@ class CalendarFragment : Fragment() {
         calendarView = calendar_view
         setUpCalendar(calendarView) // 달력 설정값 기준 호출
 
-
         //달력 날짜 클릭 시, 하기 창에 메모 내용 호출
         calendarView.onDateClickListener = { date ->
             val items = MySharedPreferences.LoadData(context!!)
@@ -57,18 +56,14 @@ class CalendarFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        getMemoData(calendarView) // 달력 메모 기준dot표시 -> refresh필요
+        getMemoData(calendarView)
     }
 
     private fun setUpCalendar(calendarView: CalendarView) {
         val calendar = Calendar.getInstance()
-        //Initial date
-        //calendar.set(2018, Calendar.JUNE, 1)
         val initialDate = CalendarDate(calendar.time)
-        //Minimum available date
         calendar.set(2018, Calendar.JANUARY, 1)
         val minDate = CalendarDate(calendar.time)
-        //Maximum availabe date
         calendar.set(2040, Calendar.DECEMBER, 31)
         val maxDate = CalendarDate(calendar.time)
         //List of preselected dates that will be initially selected

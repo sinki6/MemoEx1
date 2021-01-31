@@ -28,6 +28,7 @@ object MySharedPreferences {
             MemoData(
                 "NoData",
                 "NoData",
+                    false,
                 Calendar.getInstance().timeInMillis,
                 DayOfWeek.values()[Calendar.DAY_OF_WEEK - 1].color
             )
