@@ -24,15 +24,6 @@ class FavoriteFragment : Fragment() {
             // TODO 클릭 햇을 때 화면 전환
         }
     }
-    private val testMemoRVAdapter by lazy {
-        TestMemoRVAdapter().apply {
-            setOnMemoClickListener(object : TestMemoRVAdapter.OnMemoClickListener {
-                override fun onItemClick() {
-                    // TODO 할것.
-                }
-            })
-        }
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

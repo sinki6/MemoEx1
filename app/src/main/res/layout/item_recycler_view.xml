@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-<!--        <import type="android.view.View" />-->
 
-<!--        <variable-->
-<!--            name="memo"-->
-<!--            type="kanghan.example.memoex1.model.MemoData" />-->
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +26,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Title" />
-<!--        android:text="@{memo.memoTitle}"-->
+
         <TextView
             android:id="@+id/memoContent"
             android:layout_width="0dp"
@@ -45,6 +41,6 @@
             app:layout_constraintStart_toStartOf="@id/memoTitle"
             app:layout_constraintTop_toBottomOf="@id/memoTitle"
             tools:text="Content" />
-<!--        android:text="@{memo.memoContent}"-->
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

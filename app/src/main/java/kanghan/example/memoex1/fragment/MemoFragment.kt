@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import kanghan.example.memoex1.adapter.MainMemoRVAdapter
 import kanghan.example.memoex1.utils.MySharedPreferences
 import kanghan.example.memoex1.R
@@ -16,6 +18,7 @@ import kanghan.example.memoex1.activity.EditActivity
 import kanghan.example.memoex1.adapter.ViewpagerAdapter
 import kanghan.example.memoex1.databinding.FragmentMemoBinding
 import kanghan.example.memoex1.model.MemoData
+import kanghan.example.memoex1.utils.SapceItemDecoration
 import kotlinx.android.synthetic.main.fragment_memo.*
 import java.util.*
 
@@ -52,6 +55,7 @@ class MemoFragment : Fragment() {
     }
     private fun setRVAdapter() {
         binding.rvMemo.adapter = mainMemoRVAdapter
+        binding.rvMemo.addItemDecoration(SapceItemDecoration(16,16))
     }
 
     fun addBtn(){
@@ -70,6 +74,7 @@ class MemoFragment : Fragment() {
         intent.putExtra("dataIdx", idx)
         return intent
     }
+
 
     companion object {
         fun newInstance(): Fragment =
